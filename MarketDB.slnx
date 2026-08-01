@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MarketDB.Business/MarketDB.Business.csproj" />
+  <Project Path="MarketDB.Core/MarketDB.Core.csproj" />
+  <Project Path="MarketDB.DataAccess/MarketDB.DataAccess.csproj" />
+  <Project Path="MarketDB.UI/MarketDB.UI.csproj" />
+</Solution>

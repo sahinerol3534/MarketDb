@@ -8,7 +8,7 @@ namespace MarketDB.Core.Entities
 {
     public class Banka: BaseEntity
     {
-        public string BankaAdi { get; set; }
-        public ICollection <Kart> Kartlar {  get; set; }
+        public required string BankaAdi { get; set; }
+        public ICollection<Kart> Kartlar { get; set; } = new List<Kart>();
     }
 }

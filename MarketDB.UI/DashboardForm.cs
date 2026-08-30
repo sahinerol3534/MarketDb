@@ -44,8 +44,14 @@ namespace MarketDB.UI
 
         private void btnUrunIslemleri_Click(object sender, EventArgs e)
         {
-            var frm = new frmUrunIslemleriForm();
+            var frm = new frmUrunIslemleriForm(_contextFactory);
             frm.Show();
+        }
+
+        private void btnMarketIslemleri_Click(object sender, EventArgs e)
+        {
+            var frmMarket = new frmMarketIslemleriForm(_contextFactory);
+            frmMarket.Show();
         }
     }
 }

@@ -25,6 +25,7 @@
             btnUrunleriListele = new Button();
             dgvUrunler = new DataGridView();
             btnUrunIslemleri = new Button();
+            btnMarketIslemleri = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvUrunler).BeginInit();
             SuspendLayout();
             // 
@@ -58,11 +59,22 @@
             btnUrunIslemleri.UseVisualStyleBackColor = true;
             btnUrunIslemleri.Click += btnUrunIslemleri_Click;
             // 
+            // btnMarketIslemleri
+            // 
+            btnMarketIslemleri.Location = new Point(27, 333);
+            btnMarketIslemleri.Name = "btnMarketIslemleri";
+            btnMarketIslemleri.Size = new Size(202, 29);
+            btnMarketIslemleri.TabIndex = 3;
+            btnMarketIslemleri.Text = "Market İşlemleri";
+            btnMarketIslemleri.UseVisualStyleBackColor = true;
+            btnMarketIslemleri.Click += btnMarketIslemleri_Click;
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1280, 450);
+            Controls.Add(btnMarketIslemleri);
             Controls.Add(btnUrunIslemleri);
             Controls.Add(dgvUrunler);
             Controls.Add(btnUrunleriListele);
@@ -77,6 +89,7 @@
         private Button btnUrunleriListele;
         private DataGridView dgvUrunler;
         private Button btnUrunIslemleri;
+        private Button btnMarketIslemleri;
     }
 }
 

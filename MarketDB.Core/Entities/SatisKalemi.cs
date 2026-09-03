@@ -9,13 +9,9 @@
         public decimal KalemToplami{ get; set; } 
         public decimal? IndirimTutari{ get; set; } 
         public decimal? KdvTutari{ get; set; } 
-        public decimal? DigerVergiTutari{ get; set; } 
-        public decimal? NetTutar{ get; set; } 
-        public required Satis Satis {  get; set; }
-        public required Urun Urun {  get; set; }
-        
-      
-      
-
+        public int? TaksitSayisi{ get; set; } 
+        public decimal? TaksitTutari{ get; set; } 
+        public  Satis? Satis {  get; set; }
+        public  Urun? Urun {  get; set; }
     }
 }

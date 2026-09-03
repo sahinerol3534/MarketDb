@@ -53,5 +53,11 @@ namespace MarketDB.UI
             var frmMarket = new frmMarketIslemleriForm(_contextFactory);
             frmMarket.Show();
         }
+
+        private void btnTuketiciIslemleri_Click(object sender, EventArgs e)
+        {
+            var frmTuketici = new frmTuketiciIslemleriForm(_contextFactory);
+            frmTuketici.Show();
+        }
     }
 }

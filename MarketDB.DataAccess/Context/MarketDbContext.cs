@@ -120,21 +120,22 @@ namespace MarketDB.DataAccess.Context
             modelBuilder.Entity<Satis>(entity =>
             {
                 entity.ToTable("SATISLAR");
-                entity.Property(u => u.Id).HasColumnName("SATISID");                                                         
-                entity.Property(u => u.TuketiciId).HasColumnName("TUKETICIID");                                        
-                entity.Property(u => u.SubeId).HasColumnName("SUBEID");                                                  
-                entity.Property(u => u.SatisTarihi).HasColumnName("SATIS_TARIHI");                                    
-                entity.Property(u => u.SatisToplami).HasColumnName("SATIS_TOPLAMI");                              
-                entity.Property(u => u.IndirimToplami).HasColumnName("INDIRIM_TOPLAMI");                       
-                entity.Property(u => u.KdvToplami).HasColumnName("KDV_TOPLAMI");                                  
-                entity.Property(u => u.OdemeId).HasColumnName("ODEMEID");                                            
-                entity.Property(u => u.TurId).HasColumnName("TURID");                                                       
-                entity.Property(u => u.KartId).HasColumnName("KARTID");                                                    
-                entity.Property(u => u.TaksitSayisi).HasColumnName("TAKSIT_SAYISI");                                
-                entity.Property(u => u.TaksitTutari).HasColumnName("TAKSIT_TUTARI");                                
-                entity.Property(u => u.DigerVergilerToplami).HasColumnName("DIGER_VERGILER_TOPLAMI");
+                entity.Property(u => u.Id).HasColumnName("SATISID");
+                entity.Property(u => u.TuketiciId).HasColumnName("TUKETICIID");
+                entity.Property(u => u.SubeId).HasColumnName("SUBEID");
+                entity.Property(u => u.SatisTarihi).HasColumnName("SATIS_TARIHI");
+                entity.Property(u => u.SatisToplami).HasColumnName("SATIS_TOPLAMI");
+                entity.Property(u => u.IndirimToplami).HasColumnName("INDIRIM_TOPLAMI");
+                entity.Property(u => u.KdvToplami).HasColumnName("KDV_TOPLAMI");
+                entity.Property(u => u.FisNo).HasColumnName("FIS_NO");
+                entity.Property(u => u.OdemeTuruId).HasColumnName("TURID");
+                entity.Property(u => u.OdemeSekliId).HasColumnName("ODEMEID");
+                entity.Property(u => u.KartId).HasColumnName("KARTID");
+
+
+
             });
-           
+
 
             // SATIŞ KALEMİ 
             modelBuilder.Entity<SatisKalemi>(entity =>
@@ -148,8 +149,8 @@ namespace MarketDB.DataAccess.Context
                 entity.Property(u => u.KalemToplami).HasColumnName("KALEM_TOPLAMI");
                 entity.Property(u => u.IndirimTutari).HasColumnName("INDIRIM_TUTARI");
                 entity.Property(u => u.KdvTutari).HasColumnName("KDV_TUTARI");
-                entity.Property(u => u.DigerVergiTutari).HasColumnName("DIGER_VERGI_TUTARI");
-                entity.Property(u => u.NetTutar).HasColumnName("NET_TUTAR");
+                entity.Property(u => u.TaksitSayisi).HasColumnName("TAKSIT_SAYISI");
+                entity.Property(u => u.TaksitTutari).HasColumnName("TAKSIT_TUTARI");
             });
 
             //  ŞUBE
@@ -171,6 +172,8 @@ namespace MarketDB.DataAccess.Context
                 entity.Property(u => u.TuketiciSoyadi).HasColumnName("SOYADI");
                 entity.Property(u => u.TuketiciTelNo).HasColumnName("TELNO");
                 entity.Property(u => u.TuketiciEmail).HasColumnName("EPOSTA");
+                entity.Property(u => u.IlId).HasColumnName("ILID");
+                entity.Property(u => u.IlceId).HasColumnName("ILCEID");
                 entity.Property(u => u.MahalleId).HasColumnName("MAHALLEID");
             });
 

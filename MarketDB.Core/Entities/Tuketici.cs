@@ -6,7 +6,12 @@
         public required string TuketiciSoyadi { get; set; }
         public required string TuketiciTelNo { get; set; }
         public  string? TuketiciEmail { get; set; } 
-        public int? MahalleId { get; set; }           
+        public int IlId { get; set; }     
+        public  Il? Il {  get; set; }
+        public int IlceId { get; set; }
+        public Ilce? Ilce { get; set; }
+      
+        public int? MahalleId { get; set; }
         public  Mahalle? Mahalle { get; set; }
         public  ICollection<Satis> Satislar {  get; set; } = new List<Satis>();
     }

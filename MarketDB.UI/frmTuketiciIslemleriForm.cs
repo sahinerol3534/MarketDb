@@ -1,5 +1,6 @@
 ﻿using MarketDB.Core.Entities;
 using MarketDB.DataAccess.Context;
+using MarketDB.UI.UIHelper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -18,23 +19,10 @@ namespace MarketDB.UI
 
         private void frmTuketiciIslemleriForm_Load(object sender, EventArgs e)
         {
-            using var context = _contextFactory.CreateDbContext();
-            var iller = context.Cities.ToList();
-            cmbTuketiciIl.DataSource = iller;
-            cmbTuketiciIl.DisplayMember = "IlAdi";
-            cmbTuketiciIl.ValueMember = "Id";
-
-            var ilceler = context.Towns.ToList();
-            cmbTuketiciIlce.DataSource = ilceler;
-            cmbTuketiciIlce.DisplayMember = "IlceAdi";
-            cmbTuketiciIlce.ValueMember = "Id";
-
-            var mahalleler = context.Districts.ToList();
-            cmbTuketiciMahalle.DataSource = mahalleler;
-            cmbTuketiciMahalle.DisplayMember = "MahalleAdi";
-            cmbTuketiciMahalle.ValueMember = "Id";
+            ComboBoxHelper.ComboBoxIlGetir(cmbTuketiciIl, _contextFactory);
         }
 
+      
         private void btnTuketiciSave_Click(object sender, EventArgs e)
         {
             btnTuketiciSave.Enabled = false;
@@ -105,7 +93,7 @@ namespace MarketDB.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Girmiş Olduğunuz Bilgileri Kontrol Ediniz!!");
+                MessageBox.Show("Girmiş Olduğunuz Bilgileri Kontrol Ediniz!!" + ex.Message);
             }
 
         }
@@ -119,34 +107,12 @@ namespace MarketDB.UI
                 return;
             }
             tuketiciTelNoFormatlamaDevamEdiyor = true;
-            string tuketiciTelNoSqlFormat = txtTuketiciTelNo.Text.Replace(" ", "");
-            string tüketiciTelNoKarakterSayisi = "";
-            string formatliTelNo = "";
-            if (tuketiciTelNoSqlFormat.Length > 10)
-            {
-                tüketiciTelNoKarakterSayisi = tuketiciTelNoSqlFormat.Substring(0, 10);
-            }
-
-            else
-            {
-                tüketiciTelNoKarakterSayisi = tuketiciTelNoSqlFormat;
-            }
-            for (int i = 0; i < tüketiciTelNoKarakterSayisi.Length; i++)
-            {
-                if (i == 3 || i == 6)
-                {
-                    formatliTelNo += " ";
-                }
-                formatliTelNo += tüketiciTelNoKarakterSayisi[i];
-
-            }
+            string formatliTelNo = TextBoxHelper.TelNoFormatKontrol(txtTuketiciTelNo.Text);
             txtTuketiciTelNo.Text = formatliTelNo;
             txtTuketiciTelNo.SelectionStart = formatliTelNo.Length;
-
-
             tuketiciTelNoFormatlamaDevamEdiyor = false;
-
         }
+        
         private void TuketiciSave_TextChanged(object sender, EventArgs e)
         {
             btnTuketiciSave.Enabled = true;
@@ -154,13 +120,10 @@ namespace MarketDB.UI
 
         private void cmbTuketiciIl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (cmbTuketiciIl.SelectedValue is int seciliIlId)
             {
-                using var context = _contextFactory.CreateDbContext();
-                var ilceler = context.Towns.Where(x => x.IlId == seciliIlId).ToList();
-                cmbTuketiciIlce.DataSource = ilceler;
-                cmbTuketiciIlce.DisplayMember = "IlceAdi";
-                cmbTuketiciIlce.ValueMember = "Id";
+                ComboBoxHelper.ComboBoxIlceGetir(seciliIlId, cmbTuketiciIlce, _contextFactory);
             }
         }
 
@@ -168,11 +131,7 @@ namespace MarketDB.UI
         {
             if (cmbTuketiciIlce.SelectedValue is int seciliIlceId)
             {
-                using var context = _contextFactory.CreateDbContext();
-                var mahalleler = context.Districts.Where(x => x.IlceId == seciliIlceId).ToList();
-                cmbTuketiciMahalle.DataSource = mahalleler;
-                cmbTuketiciMahalle.DisplayMember = "MahalleAdi";
-                cmbTuketiciMahalle.ValueMember = "Id";
+                ComboBoxHelper.ComboBoxMahalleGetir(seciliIlceId, cmbTuketiciMahalle, _contextFactory);
             }
         }
 

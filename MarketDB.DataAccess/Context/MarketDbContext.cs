@@ -100,6 +100,17 @@ namespace MarketDB.DataAccess.Context
                 entity.Property(u => u.MarketAdi).HasColumnName("MARKETADI");
             });
 
+            //SUBE
+            modelBuilder.Entity<Sube>(entity =>
+            {
+                entity.ToTable("SUBE");
+                entity.Property(u=>u.Id).HasColumnName("SUBEID");
+                entity.Property(u=>u.SubeAdi).HasColumnName("SUBEADI");
+                entity.Property(u=>u.MarketId).HasColumnName("MARKETID");
+                entity.Property(u=>u.MahalleId).HasColumnName("MAHALLEID");
+
+            });
+                
             //  ÖDEME ŞEKLİ
             modelBuilder.Entity<OdemeSekli>(entity =>
             {

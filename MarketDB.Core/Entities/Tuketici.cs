@@ -1,18 +1,22 @@
-﻿namespace MarketDB.Core.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MarketDB.Core.Entities
 {
-    public class Tuketici: BaseEntity
+    public class Tuketici : BaseEntity
     {
         public required string TuketiciAdi { get; set; }
         public required string TuketiciSoyadi { get; set; }
         public required string TuketiciTelNo { get; set; }
-        public  string? TuketiciEmail { get; set; } 
-        public int IlId { get; set; }     
-        public  Il? Il {  get; set; }
-        public int IlceId { get; set; }
+        public string? TuketiciEmail { get; set; }
+        public int? IlId { get; set; }
+        public Il? Il { get; set; }
+        public int? IlceId { get; set; }
         public Ilce? Ilce { get; set; }
-      
+
         public int? MahalleId { get; set; }
-        public  Mahalle? Mahalle { get; set; }
-        public  ICollection<Satis> Satislar {  get; set; } = new List<Satis>();
+        public Mahalle? Mahalle { get; set; }
+        public ICollection<Satis> Satislar { get; set; } = new List<Satis>();
+        [NotMapped]
+        public string AdSoyad => $"{TuketiciAdi} {TuketiciSoyadi}";
     }
 }

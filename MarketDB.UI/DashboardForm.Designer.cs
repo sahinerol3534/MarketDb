@@ -27,6 +27,7 @@
             btnUrunIslemleri = new Button();
             btnMarketIslemleri = new Button();
             btnTuketiciIslemleri = new Button();
+            btnSatisIslemleri = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvUrunler).BeginInit();
             SuspendLayout();
             // 
@@ -80,11 +81,22 @@
             btnTuketiciIslemleri.UseVisualStyleBackColor = true;
             btnTuketiciIslemleri.Click += btnTuketiciIslemleri_Click;
             // 
+            // btnSatisIslemleri
+            // 
+            btnSatisIslemleri.Location = new Point(27, 405);
+            btnSatisIslemleri.Name = "btnSatisIslemleri";
+            btnSatisIslemleri.Size = new Size(202, 29);
+            btnSatisIslemleri.TabIndex = 5;
+            btnSatisIslemleri.Text = "Satış İşlemleri";
+            btnSatisIslemleri.UseVisualStyleBackColor = true;
+            btnSatisIslemleri.Click += btnSatisIslemleri_Click;
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1280, 514);
+            Controls.Add(btnSatisIslemleri);
             Controls.Add(btnTuketiciIslemleri);
             Controls.Add(btnMarketIslemleri);
             Controls.Add(btnUrunIslemleri);
@@ -103,6 +115,7 @@
         private Button btnUrunIslemleri;
         private Button btnMarketIslemleri;
         private Button btnTuketiciIslemleri;
+        private Button btnSatisIslemleri;
     }
 }
 

@@ -22,10 +22,10 @@ namespace MarketDB.UI
             ComboBoxHelper.ComboBoxIlGetir(cmbTuketiciIl, _contextFactory);
         }
 
-      
+
         private void btnTuketiciSave_Click(object sender, EventArgs e)
         {
-            btnTuketiciSave.Enabled = false;
+
             CultureInfo trCulture = new CultureInfo("tr-TR");
             CultureInfo usCulture = new CultureInfo("en-US");
             bool tuketiciAdiGirisKontrol = string.IsNullOrWhiteSpace(txtTuketiciAdi.Text);
@@ -45,16 +45,20 @@ namespace MarketDB.UI
             bool tuketiciTelNoGirisKontrol = string.IsNullOrWhiteSpace(txtTuketiciTelNo.Text);
             if (tuketiciTelNoGirisKontrol)
             {
-                MessageBox.Show("Tüktici Telefon Numarası Girin!!");
+                MessageBox.Show("Tüketici Telefon Numarası Girin!!");
                 return;
             }
 
-            bool tuketiciEmailFormatKontrol = !string.IsNullOrWhiteSpace(txtTuketiciEmail.Text);
-            if (tuketiciEmailFormatKontrol && !txtTuketiciEmail.Text.Contains("@"))
+            int? ilId = ComboBoxHelper.NullableIntOku(cmbTuketiciIl);
+            int? ilceId = ComboBoxHelper.NullableIntOku(cmbTuketiciIlce);
+            int? mahalleId = ComboBoxHelper.NullableIntOku(cmbTuketiciMahalle);
+            bool emailFormatDogrumu = TextBoxHelper.EmailFormatKontrol(txtTuketiciEmail.Text);
+            if (!emailFormatDogrumu)
             {
                 MessageBox.Show("e-mail Formatınız Geçerli Değil!!");
                 return;
             }
+
 
             Tuketici tuketici = new Tuketici()
             {
@@ -62,9 +66,9 @@ namespace MarketDB.UI
                 TuketiciSoyadi = txtTuketiciSoyadi.Text.ToUpper(trCulture),
                 TuketiciTelNo = txtTuketiciTelNo.Text.Replace(" ", ""),
                 TuketiciEmail = txtTuketiciEmail.Text.ToLower(usCulture),
-                IlId = Convert.ToInt32(cmbTuketiciIl.SelectedValue),
-                IlceId = Convert.ToInt32(cmbTuketiciIlce.SelectedValue),
-                MahalleId = Convert.ToInt32(cmbTuketiciMahalle.SelectedValue)
+                IlId = ilId,
+                IlceId = ilceId,
+                MahalleId = mahalleId
             };
 
             using var context = _contextFactory.CreateDbContext();
@@ -72,6 +76,8 @@ namespace MarketDB.UI
             {
                 context.Customers.Add(tuketici);
                 context.SaveChanges();
+                TuketiciFormunuTemizle();
+                btnTuketiciSave.Enabled = false;
             }
             catch (DbUpdateException ex)
             {
@@ -79,7 +85,7 @@ namespace MarketDB.UI
                 {
                     if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
                     {
-                        MessageBox.Show("Girmiş Olduğunuz Telefon Numarası Database'te Kayıtlı. Başka bir Telefon Numarası Girin!!");
+                        MessageBox.Show("Girmiş Olduğunuz Telefon Numarası Kayıtlı. Başka bir Telefon Numarası Girin!!");
                     }
                     else
                     {
@@ -112,7 +118,7 @@ namespace MarketDB.UI
             txtTuketiciTelNo.SelectionStart = formatliTelNo.Length;
             tuketiciTelNoFormatlamaDevamEdiyor = false;
         }
-        
+
         private void TuketiciSave_TextChanged(object sender, EventArgs e)
         {
             btnTuketiciSave.Enabled = true;
@@ -120,7 +126,7 @@ namespace MarketDB.UI
 
         private void cmbTuketiciIl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (cmbTuketiciIl.SelectedValue is int seciliIlId)
             {
                 ComboBoxHelper.ComboBoxIlceGetir(seciliIlId, cmbTuketiciIlce, _contextFactory);
@@ -135,10 +141,37 @@ namespace MarketDB.UI
             }
         }
 
-        private void cmbTuketiciMahalle_SelectedIndexChanged(object sender, EventArgs e)
+        private void TuketiciFormunuTemizle()
         {
-
+            cmbTuketiciIl.SelectedIndex = -1;
+            cmbTuketiciIlce.DataSource = null;
+            cmbTuketiciMahalle.DataSource = null;
+            txtTuketiciAdi.Text = "";
+            txtTuketiciSoyadi.Text = "";
+            txtTuketiciTelNo.Text = "";
+            txtTuketiciEmail.Text = "";
         }
+
+        private void txtTuketiciEmail_Leave(object sender, EventArgs e)
+        {
+            bool emailFormatDogrumu = TextBoxHelper.EmailFormatKontrol(txtTuketiciEmail.Text);
+            if (!emailFormatDogrumu)
+            {
+                MessageBox.Show("e-mail Formatınız Geçerli Değil!!");
+                return;
+            }
+        }
+
+        private void btnTuketiciKayitCancel_Click(object sender, EventArgs e)
+        {
+            var sonuc = MessageBox.Show
+                ("Tuketici Islemleri Formu Kapanacak Emin misin?", "Form Kapanıyor",MessageBoxButtons.OKCancel);
+           
+            if (sonuc==DialogResult.OK)
+            {
+                Close();
+            }
+         }
     }
 }
 

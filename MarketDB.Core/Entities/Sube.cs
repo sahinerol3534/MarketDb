@@ -14,7 +14,6 @@ namespace MarketDB.Core.Entities
     
         [NotMapped]
         
-        //public string SubeIlIlceMahalle => $"{SubeAdi}-{Mahalle.MahalleAdi}-{Mahalle.Ilce.IlceAdi}-{Mahalle.Ilce.Il.IlAdi}";
         public string SubeIlIlceMahalle
         {
             get 

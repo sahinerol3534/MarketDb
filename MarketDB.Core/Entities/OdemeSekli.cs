@@ -3,6 +3,6 @@
     public class OdemeSekli: BaseEntity
     {
         public required string OdemeAdi {  get; set; }
-        public  ICollection<Satis> Satislar { get; set; } = new List<Satis>(); 
+       // public  ICollection<Satis> Satislar { get; set; } = new List<Satis>(); 
     }
 }

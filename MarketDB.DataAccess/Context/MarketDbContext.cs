@@ -14,8 +14,9 @@ namespace MarketDB.DataAccess.Context
         public DbSet<Kategori> Categories { get; set; }
         public DbSet<Mahalle> Districts { get; set; }
         public DbSet<Marketler> Markets { get; set; }
-        public DbSet<OdemeSekli> KindofPayments { get; set; }
+        public DbSet<OdemeSekli> PaymentStatuses { get; set; }
         public DbSet<OdemeTuru> TypeOfPayments { get; set; }
+        public DbSet<OdemeDetay> PaymentDetails { get; set; }
         public DbSet<Satis> Sales { get; set; }
         public DbSet<SatisKalemi> SaleLineItems { get; set; }
         public DbSet<Sube> Branches { get; set; }
@@ -127,7 +128,23 @@ namespace MarketDB.DataAccess.Context
                 entity.Property(u => u.TurAdi).HasColumnName("TUR_ADI");
             });
 
+            // ÖDEME DETAYLARI
+            modelBuilder.Entity<OdemeDetay>(entity =>
+            {
+                entity.ToTable("ODEME_DETAYLARI");
+                entity.Property(o => o.Id).HasColumnName("ODEMEDETAYID");
+                entity.Property(o => o.SatisId).HasColumnName("SATISID");
+                entity.Property(o => o.KartId).HasColumnName("KARTID");
+                entity.Property(o => o.NakitTutar).HasColumnName("NAKIT_TUTAR");
+                entity.Property(o => o.KartTutar).HasColumnName("KART_TUTAR");
+            });
+
             //  SATIŞ
+            modelBuilder.Entity<Satis>()
+                .HasOne(s => s.OdemeDetay)
+                .WithOne(od => od.Satis)
+                .HasForeignKey<OdemeDetay>(od => od.SatisId);
+
             modelBuilder.Entity<Satis>(entity =>
             {
                 entity.ToTable("SATISLAR");
@@ -138,20 +155,13 @@ namespace MarketDB.DataAccess.Context
                 entity.Property(u => u.SatisToplami).HasColumnName("SATIS_TOPLAMI");
                 entity.Property(u => u.IndirimToplami).HasColumnName("INDIRIM_TOPLAMI");
                 entity.Property(u => u.KdvToplami).HasColumnName("KDV_TOPLAMI");
-                entity.Property(u => u.FisNo).HasColumnName("FIS_NO");
-                entity.Property(u => u.OdemeTuruId).HasColumnName("TURID");
-                entity.Property(u => u.OdemeSekliId).HasColumnName("ODEMEID");
-                entity.Property(u => u.KartId).HasColumnName("KARTID");
-
-
-
+                entity.Property(u => u.FisNo).HasColumnName("FIS_NO");     
             });
-
 
             // SATIŞ KALEMİ 
             modelBuilder.Entity<SatisKalemi>(entity =>
             {
-                entity.ToTable("SATIS_KALEMI");
+                entity.ToTable("SATIS_KALEMI", tb=>tb.UseSqlOutputClause(false));
                 entity.Property(u => u.Id).HasColumnName("KALEMID");
                 entity.Property(u => u.SatisId).HasColumnName("SATISID");
                 entity.Property(u => u.UrunId).HasColumnName("URUNID");
@@ -162,6 +172,7 @@ namespace MarketDB.DataAccess.Context
                 entity.Property(u => u.KdvTutari).HasColumnName("KDV_TUTARI");
                 entity.Property(u => u.TaksitSayisi).HasColumnName("TAKSIT_SAYISI");
                 entity.Property(u => u.TaksitTutari).HasColumnName("TAKSIT_TUTARI");
+                entity.Property(u => u.OdemeSekliId).HasColumnName("ODEMEID");
             });
 
             //  ŞUBE

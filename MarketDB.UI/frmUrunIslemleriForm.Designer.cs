@@ -44,85 +44,90 @@
             // lblUrunAdi
             // 
             lblUrunAdi.AutoSize = true;
-            lblUrunAdi.Location = new Point(27, 74);
+            lblUrunAdi.Location = new Point(24, 56);
             lblUrunAdi.Name = "lblUrunAdi";
-            lblUrunAdi.Size = new Size(83, 20);
+            lblUrunAdi.Size = new Size(68, 15);
             lblUrunAdi.TabIndex = 0;
             lblUrunAdi.Text = "Ürünün Adı";
             // 
             // lblUrunMarkasi
             // 
             lblUrunMarkasi.AutoSize = true;
-            lblUrunMarkasi.Location = new Point(27, 113);
+            lblUrunMarkasi.Location = new Point(24, 85);
             lblUrunMarkasi.Name = "lblUrunMarkasi";
-            lblUrunMarkasi.Size = new Size(111, 20);
+            lblUrunMarkasi.Size = new Size(91, 15);
             lblUrunMarkasi.TabIndex = 1;
             lblUrunMarkasi.Text = "Urünün Markası";
             // 
             // lblUrunFiyati
             // 
             lblUrunFiyati.AutoSize = true;
-            lblUrunFiyati.Location = new Point(27, 162);
+            lblUrunFiyati.Location = new Point(24, 122);
             lblUrunFiyati.Name = "lblUrunFiyati";
-            lblUrunFiyati.Size = new Size(95, 20);
+            lblUrunFiyati.Size = new Size(78, 15);
             lblUrunFiyati.TabIndex = 2;
             lblUrunFiyati.Text = "Ürünün Fiyatı";
             // 
             // lblUrunCinsi
             // 
             lblUrunCinsi.AutoSize = true;
-            lblUrunCinsi.Location = new Point(27, 213);
+            lblUrunCinsi.Location = new Point(24, 160);
             lblUrunCinsi.Name = "lblUrunCinsi";
-            lblUrunCinsi.Size = new Size(91, 20);
+            lblUrunCinsi.Size = new Size(76, 15);
             lblUrunCinsi.TabIndex = 3;
             lblUrunCinsi.Text = "Ürünün Cinsi";
             // 
             // lblUrunKategorisi
             // 
             lblUrunKategorisi.AutoSize = true;
-            lblUrunKategorisi.Location = new Point(27, 257);
+            lblUrunKategorisi.Location = new Point(24, 193);
             lblUrunKategorisi.Name = "lblUrunKategorisi";
-            lblUrunKategorisi.Size = new Size(127, 20);
+            lblUrunKategorisi.Size = new Size(102, 15);
             lblUrunKategorisi.TabIndex = 4;
             lblUrunKategorisi.Text = "Ürünün Kategorisi";
             // 
             // txtUrunAdi
             // 
-            txtUrunAdi.Location = new Point(182, 67);
+            txtUrunAdi.Location = new Point(159, 50);
+            txtUrunAdi.Margin = new Padding(3, 2, 3, 2);
             txtUrunAdi.Name = "txtUrunAdi";
-            txtUrunAdi.Size = new Size(125, 27);
+            txtUrunAdi.Size = new Size(110, 23);
             txtUrunAdi.TabIndex = 5;
             txtUrunAdi.TextChanged += TextBox_TextChanged;
             // 
             // txtUrunMarkasi
             // 
-            txtUrunMarkasi.Location = new Point(182, 113);
+            txtUrunMarkasi.Location = new Point(159, 85);
+            txtUrunMarkasi.Margin = new Padding(3, 2, 3, 2);
             txtUrunMarkasi.Name = "txtUrunMarkasi";
-            txtUrunMarkasi.Size = new Size(125, 27);
+            txtUrunMarkasi.Size = new Size(110, 23);
             txtUrunMarkasi.TabIndex = 6;
             txtUrunMarkasi.TextChanged += TextBox_TextChanged;
             // 
             // txtUrunFiyati
             // 
-            txtUrunFiyati.Location = new Point(182, 159);
+            txtUrunFiyati.Location = new Point(159, 119);
+            txtUrunFiyati.Margin = new Padding(3, 2, 3, 2);
             txtUrunFiyati.Name = "txtUrunFiyati";
-            txtUrunFiyati.Size = new Size(125, 27);
+            txtUrunFiyati.Size = new Size(110, 23);
             txtUrunFiyati.TabIndex = 7;
             txtUrunFiyati.TextChanged += TextBox_TextChanged;
             // 
             // cmbUrunKategorisi
             // 
             cmbUrunKategorisi.FormattingEnabled = true;
-            cmbUrunKategorisi.Location = new Point(182, 249);
+            cmbUrunKategorisi.Location = new Point(159, 187);
+            cmbUrunKategorisi.Margin = new Padding(3, 2, 3, 2);
             cmbUrunKategorisi.Name = "cmbUrunKategorisi";
-            cmbUrunKategorisi.Size = new Size(151, 28);
+            cmbUrunKategorisi.Size = new Size(133, 23);
             cmbUrunKategorisi.TabIndex = 9;
             // 
             // btnUrunSave
             // 
-            btnUrunSave.Location = new Point(489, 340);
+            btnUrunSave.Location = new Point(428, 255);
+            btnUrunSave.Margin = new Padding(3, 2, 3, 2);
             btnUrunSave.Name = "btnUrunSave";
-            btnUrunSave.Size = new Size(229, 29);
+            btnUrunSave.Size = new Size(200, 22);
             btnUrunSave.TabIndex = 10;
             btnUrunSave.Text = "Kaydet";
             btnUrunSave.UseVisualStyleBackColor = true;
@@ -130,17 +135,18 @@
             // 
             // txtUrunCinsi
             // 
-            txtUrunCinsi.Location = new Point(182, 206);
+            txtUrunCinsi.Location = new Point(159, 154);
+            txtUrunCinsi.Margin = new Padding(3, 2, 3, 2);
             txtUrunCinsi.Name = "txtUrunCinsi";
-            txtUrunCinsi.Size = new Size(125, 27);
+            txtUrunCinsi.Size = new Size(110, 23);
             txtUrunCinsi.TabIndex = 11;
             txtUrunCinsi.TextChanged += TextBox_TextChanged;
             // 
             // frmUrunIslemleriForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1233, 450);
+            ClientSize = new Size(1079, 338);
             Controls.Add(txtUrunCinsi);
             Controls.Add(btnUrunSave);
             Controls.Add(cmbUrunKategorisi);
@@ -152,6 +158,7 @@
             Controls.Add(lblUrunFiyati);
             Controls.Add(lblUrunMarkasi);
             Controls.Add(lblUrunAdi);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmUrunIslemleriForm";
             Text = "Ürün İşlemleri ";
             Load += frmUrunIslemleriForm_Load;
